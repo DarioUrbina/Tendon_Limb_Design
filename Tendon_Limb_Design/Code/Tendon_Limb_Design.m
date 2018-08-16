@@ -13,7 +13,7 @@ R_Front = [-r1 -r1 r2 r2;                   % Moment arm matrices
 
 q=[1.190800, 1.83641;                       % Angle of the joints (for all the required postures)
     1.062100, 1.87549;
-    0.813389, 1.87549
+    0.813389, 1.87549;
     0.700844, 1.83641;
     0.601398, 1.77215;
     0.518223, 1.68353;
@@ -50,7 +50,7 @@ for i=1:10
                     1 1 0 0
                     1 1 0 1
                     1 1 1 0
-                    1 1 1 1]
+                    1 1 1 1];
            vertex=zeros(16,1); 
            vertey=zeros(16,1);  
 
@@ -76,7 +76,7 @@ for i=1:10
         k = convhull(vertex,vertey);                            %Showing the convex polygon formed by the column space created by Minkoski sum                      
         plot(vertex(k),vertey(k),'r-',vertex,vertey,'b*')
 
-        LimbFigure(q(i,1), q(i,2), l1, l2)
+        LimbFigure(q(i,1), q(i,2), l1, l2,-5,5,-5,5)
 
 end
 
