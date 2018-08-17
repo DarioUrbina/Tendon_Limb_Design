@@ -1,5 +1,5 @@
 clear all
-% close all
+close all
 
 motorForce=49*.85; 	%__tendon tensions that the Faulhaber23.. motors can generate, 49 is in Stall Torque, we can't consider that value
 F01 = 43; F02 = 43; F03 = 43;  %Force values 
@@ -8,9 +8,9 @@ r1 = 2.3; r2 = 2.3;                          % cm
  
 l1 = 8; l2 = 7.84;                           % cm
 
-F0 = diag([F01; F02; F03]);  %Diagnal matrix for Fmax           
+F0 = diag([F01; F02; F03]);                 %Diagnal matrix for Fmax           
 
-R_Front = [+r1 -r1 -r1 ;                   % Moment arm matrices
+R_Front = [+r1 -r1 -r1 ;                    % Moment arm matrices
            0  -r2 r2 ];
         
 % R_Front = [-r1 -r1 +r1 ;                   % Moment arm matrices
@@ -36,7 +36,6 @@ for i=1:1
 %           
         x_F = [H_front(1,1) H_front(1,2) H_front(1,3) ];
         y_F = [H_front(2,1) H_front(2,2) H_front(2,3) ];
-%         
 
         comb=[0 0 0 
             0 0 1
