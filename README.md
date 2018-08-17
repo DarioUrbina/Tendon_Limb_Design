@@ -4,7 +4,7 @@ The goal of this respository is to show the design behind a Tendon-Driven leg fo
 
 Transformation matrix (T) __Kinetic description
 
-Forward kinematic model G(q) __End point position
+Forward kinematic model G(q) __End point position with orientation also called Geometric  Model
 
 Jacobian (J) __Instantaneous linear and angular endpoint velocities
 
