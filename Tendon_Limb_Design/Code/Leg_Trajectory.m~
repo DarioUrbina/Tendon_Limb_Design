@@ -1,5 +1,5 @@
 
-
+%% Paremeters
 l1=100;                 %Determines leg size, in this case we asume that upper and lower limb segments are the same size
 % l2=4;
 q1_Position=[0 150];    %Modify this parameter dependig on the leg size
@@ -8,7 +8,11 @@ ylimit=[-100 300];      %Modify this parameter dependig on the leg size
 lastTouchPoint=-500;    %Modify this parameter dependig on the leg size
 
 figure
-
+% title(['Posture with  q1:  ' num2str(rad2deg(q1_F_Uplimit))  'and    q2:  ' num2str(rad2deg(q2_F_Uplimit)) '  (deg) '])
+%     xlabel('cm')
+%     ylabel('cm') 
+%     hold on
+%%
 for i=1:1000
     
     i
@@ -25,7 +29,8 @@ for i=1:1000
     mid_Hip_y=(q1_Position(2)-y(3))/2;
     
 
-       slope=(y(3)-q1_Position(2))/(x(3)+q1_Position(1)); 
+       slope=(y(3)-q1_Position(2))/(x(3)+q1_Position(1));
+       slope_l1=(y(1)-yyy)/(x(1)-xxx);
 
     deg=atand(slope);
   
@@ -63,6 +68,4 @@ end
 
     hold on
 end
-    title(['Posture with  q1:  ' num2str(rad2deg(q1_F_Uplimit))  'and    q2:  ' num2str(rad2deg(q2_F_Uplimit)) '  (deg) '])
-    xlabel('cm')
-    ylabel('cm')
+    

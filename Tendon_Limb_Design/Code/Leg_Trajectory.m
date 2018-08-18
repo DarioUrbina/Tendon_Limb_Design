@@ -29,7 +29,8 @@ for i=1:1000
     mid_Hip_y=(q1_Position(2)-y(3))/2;
     
 
-       slope=(y(3)-q1_Position(2))/(x(3)+q1_Position(1)); 
+       slope=(y(3)-q1_Position(2))/(x(3)+q1_Position(1));
+       slope_l1=(y(1)-yyy)/(x(1)-xxx);
 
     deg=atand(slope);
   
