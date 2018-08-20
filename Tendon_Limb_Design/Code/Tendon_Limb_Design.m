@@ -17,7 +17,7 @@ R_Front = [+r1 -r1 -r1 ;                    % Moment arm matrices
 %             r2  -r2 0 ];
 
         
-q=[1 30                       % Angle of the joints (for all the required postures)
+q=[85 3                       % Angle of the joints (for all the required postures)
 ];
         
 
