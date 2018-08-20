@@ -72,7 +72,7 @@ for i=1:1
         k = convhull(vertex,vertey);                            %Showing the convex polygon formed by the column space created by Minkoski sum                      
         plot(vertex(k),vertey(k),'r-',vertex,vertey,'b*')
 
-%         LimbFigure(q(i,1), q(i,2), l1, l2,-5,5,-5,5)
+        LimbFigure(q(i,1), q(i,2), l1, l2,-5,5,-5,5)
 
 end
 
