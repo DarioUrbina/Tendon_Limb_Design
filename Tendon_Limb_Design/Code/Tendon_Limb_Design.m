@@ -1,8 +1,9 @@
-clear all
-close all
+function Tendon_Limb_Design()
+% clear all
+% close all
 
 motorForce=49*.85; 	%__tendon tensions that the Faulhaber23.. motors can generate, 49 is in Stall Torque, we can't consider that value
-F01 = 43; F02 = 43; F03 = 43;  %Force values 
+F01 = motorForce; F02 = motorForce; F03 = motorForce;  %Force values 
 
 r1 = 2.3; r2 = 2.3;                          % cm
  
@@ -15,6 +16,7 @@ R_Front = [+r1 -r1 -r1 ;                    % Moment arm matrices
         
 % R_Front = [-r1 -r1 +r1 ;                   % Moment arm matrices
 %             r2  -r2 0 ];
+
 
         
 q=[85 3                       % Angle of the joints (for all the required postures)
@@ -50,7 +52,7 @@ for i=1:1
         vertey=zeros(16,1);  
 
 
-        figure                                                 %Showing force vectors
+         figure                                                 %Showing force vectors
         plot([0 0], [-5 5],'k');
         axis([-50 70 -50 70])
         hold on
@@ -76,3 +78,4 @@ for i=1:1
 
 end
 
+end
