@@ -113,13 +113,20 @@ end
 subplot (4,1,2)
 plot (deg1)
     ylim([-60 50]);
+    title('deg1')
 subplot (4,1,3)
 plot (deg2)
      ylim([30 100]);
+     title('deg2')
      
 subplot
 
-Tendon_Limb_Design
+degs=[deg1;deg2]'
+subplot (4,1,4)
+
+Tendon_Limb_Design(degs)
+ylim([-550 700]);
+% Tendon_Limb_Design
 
 
 
