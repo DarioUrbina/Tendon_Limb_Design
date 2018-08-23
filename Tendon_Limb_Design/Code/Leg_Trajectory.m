@@ -1,3 +1,6 @@
+%% Notes
+% See how the walking sycle would look. What are we really expecting 
+% from a walking cycle??
 
 %% Paremeters
 l1=10;                 %Determines leg size, in this case we asume that upper and lower limb segments are the same size
@@ -99,7 +102,7 @@ hold on
 
 subplot (4,1,2)
 plot (deg1)
-ylim([-60 50]);
+ylim([-100 100]);
 title('deg1')
 xlabel('Leg position')
 ylabel('deg') 
@@ -107,7 +110,7 @@ ylabel('deg')
 
 subplot (4,1,3)
 plot (deg2)
-ylim([30 100]);
+ylim([-100 100]);
 title('deg2')
 xlabel('Leg position')
 ylabel('deg')
