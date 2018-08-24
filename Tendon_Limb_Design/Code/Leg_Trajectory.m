@@ -9,8 +9,8 @@ l1=10;                 %Determines leg size, in this case we asume that upper an
 q1_Position=[0 16];    %Modify these parameter dependig on the leg size
 xlimit1=[-20 20];     
 ylimit1=[0 20];      
-xlimit2=[0 130];      %Modify these parameter dependig on the feasible forse size
-ylimit2=[-40 20]; 
+xlimit2=[-15 250];      %Modify these parameter dependig on the feasible forse size
+ylimit2=[-30 40]; 
 firstTouchPoint=20;    %Modify this parameter dependig on the leg size
                         %Include forces and Moment Arm Matrix here
 Motor_Force=49*.80;                       
@@ -37,11 +37,11 @@ for i=1:2:45
         mid_Hip_y=(q1_Position(2)-y(3))/2;
 
         if (x(3)<0)
-        foot_q1_dist=sqrt(((x(1)+x(3))^2)+(y(1)-y(2))^2)
+        foot_q1_dist=sqrt(((x(1)+x(3))^2)+(y(1)-y(2))^2);
         else
-        foot_q1_dist=sqrt(((x(1)-x(3))^2)+(y(1)-y(2))^2)   
+        foot_q1_dist=sqrt(((x(1)-x(3))^2)+(y(1)-y(2))^2);   
         end
-        max_dist=l1*2
+        max_dist=l1*2;
         c=sqrt((l1^2-(foot_q1_dist/2)^2));
 
         slope=(y(3)-q1_Position(2))/(x(3)+q1_Position(1));
@@ -121,13 +121,14 @@ hold on
 % xlabel('Leg position')
 % ylabel('deg')
      
-degs=[deg1;deg2]'
+degs=[deg1;deg2]';
 % subplot (4,1,4)
 subplot (2,1,2) 
 
 
 Tendon_Limb_Design(degs,Motor_Force)
-% ylim([-40 20]);
+xlim(xlimit2);
+ylim(ylimit2);
 pbaspect([1 (ylimit2(1)-ylimit2(2))/(xlimit2(1)-xlimit2(2)) 1])
 
 
