@@ -1,5 +1,7 @@
 # Tendon_Limb_Design
 
+Run "Leg_Trayectory.m" to run the code and get the main figure showing the angle changes and fesible forse set  for a leg movement during a ground stage.
+
 The goal of this respository is to show the design behind a Tendon-Driven leg following this basic steps: 
 
 Transformation matrix (T) __Kinetic description

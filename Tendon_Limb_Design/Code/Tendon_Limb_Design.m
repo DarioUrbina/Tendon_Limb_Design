@@ -29,10 +29,11 @@ for i=1:sizzze
 %         disp=0 ;                      
 
         J_inv_Front = Jinv(deg2rad(q(i,1)), deg2rad(q(i,2)), l1, l2);        %Inverse Jacobian
+%          J_inv_Front = Jinv((q(i,1)), (q(i,2)), l1, l2);        %Inverse Jacobian
 
         % H_front =  R_Front * F0;                         %For torque space plots.
 
-        H_front = J_inv_Front'* (R_Front * F0);                % Fot force space plots.%
+        H_front = J_inv_Front'* R_Front * F0;                % Fot force space plots.%
         
         % %       V1          V2          V3          V4   (force vectors)
         
@@ -61,7 +62,7 @@ for i=1:sizzze
         hold on
         plot([-5+disp 5],[0+disp 0],'k');
         hold on
-%         quiver([0+disp 0+disp 0+disp],[0 0 0],x_F+disp,y_F);
+         quiver([0+disp 0+disp 0+disp],[0 0 0],x_F+disp,y_F);
         title('Feasible force set') %for q1:  ' num2str(q(i,1)) ',    q2:  ' num2str(q(i,2)) ' (rad) '])
         xlabel('X direction force')
         ylabel('Y direction force')
