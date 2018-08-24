@@ -1,14 +1,19 @@
+%% Notes
+% See how the walking sycle would look. What are we really expecting 
+% from a walking cycle??
 
 %% Paremeters
 l1=10;                 %Determines leg size, in this case we asume that upper and lower limb segments are the same size
 % l1=8.2;
 % l2=4;
-q1_Position=[0 16];    %Modify this parameter dependig on the leg size
-xlimit=[-20 20];      %Modify this parameter dependig on the leg size
-ylimit=[0 20];      %Modify this parameter dependig on the leg size
+q1_Position=[0 16];    %Modify these parameter dependig on the leg size
+xlimit1=[-20 20];     
+ylimit1=[0 20];      
+xlimit2=[0 130];      %Modify these parameter dependig on the feasible forse size
+ylimit2=[-40 20]; 
 firstTouchPoint=20;    %Modify this parameter dependig on the leg size
                         %Include forces and Moment Arm Matrix here
-                        
+Motor_Force=49*.80;                       
 %%
 % slope1=zeros(1,6);
 angleCount=0;
@@ -51,11 +56,13 @@ for i=1:2:45
         angleCount=angleCount+1;
         if (x(3)>q1_Position(1))
 
-            subplot (4,1,1) 
+%             subplot (4,1,1) 
+            subplot (2,1,1) 
             plot ([knee_pull(1) x(3)], [knee_pull(2) y(3)]);
 
             hold on
-            subplot (4,1,1)
+%             subplot (4,1,1)
+            subplot (2,1,1) 
             plot  ([knee_pull(1) x(1)], [knee_pull(2) y(1)]);
 
             x1=[q1_Position(1) q1_Position(1) knee_pull(1) q1_Position(1)];
@@ -69,10 +76,12 @@ for i=1:2:45
 
         else
 
-            subplot (4,1,1);
+%             subplot (4,1,1);
+            subplot (2,1,1) 
             plot([knee_push(1) x(3)], [knee_push(2) y(3)]);
             hold on
-            subplot (4,1,1);
+%             subplot (4,1,1);
+            subplot (2,1,1) 
             plot ([knee_push(1) x(1)], [knee_push(2) y(1)]);
 
             x1=[q1_Position(1) q1_Position(1) knee_push(1) q1_Position(1)];
@@ -89,34 +98,37 @@ for i=1:2:45
     end
 end
 
-xlim(xlimit);
-ylim(ylimit);
-pbaspect([1 (ylimit(1)-ylimit(2))/(xlimit(1)-xlimit(2)) 1])
+xlim(xlimit1);
+ylim(ylimit1);
+pbaspect([1 (ylimit1(1)-ylimit1(2))/(xlimit1(1)-xlimit1(2)) 1])
 title('Leg position')
 xlabel('cm')
 ylabel('cm') 
 hold on
 
-subplot (4,1,2)
-plot (deg1)
-ylim([-60 50]);
-title('deg1')
-xlabel('Leg position')
-ylabel('deg') 
-
-
-subplot (4,1,3)
-plot (deg2)
-ylim([30 100]);
-title('deg2')
-xlabel('Leg position')
-ylabel('deg')
+% subplot (4,1,2)
+% plot (deg1)
+% ylim([-100 100]);
+% title('deg1')
+% xlabel('Leg position')
+% ylabel('deg') 
+% 
+% 
+% subplot (4,1,3)
+% plot (deg2)
+% ylim([-100 100]);
+% title('deg2')
+% xlabel('Leg position')
+% ylabel('deg')
      
 degs=[deg1;deg2]'
-subplot (4,1,4)
+% subplot (4,1,4)
+subplot (2,1,2) 
 
-Tendon_Limb_Design(degs)
-ylim([-550 700]);
+
+Tendon_Limb_Design(degs,Motor_Force)
+% ylim([-40 20]);
+pbaspect([1 (ylimit2(1)-ylimit2(2))/(xlimit2(1)-xlimit2(2)) 1])
 
 
 
