@@ -1,9 +1,10 @@
-function Tendon_Limb_Design(q,Force)
+function Tendon_Limb_Design(q,Force,endPoint_Location,scaling_fator)
 
     sizze=size(q,1);
+    Force=Force*scaling_fator;
     F01 = Force; F02 = Force; F03 = Force;     %Force values were randomly chosen 
     r1 = 2.3; r2 = 2.3;            %Moment arms obtained from Hwk 4 figure
-    l1 = 10; l2 = 10;                           % cm
+    l1 = 8; l2 = 8;                           % cm
 
     F0 = diag([F01; F02; F03]);            %Diagnal matrix for Fmax
 
@@ -39,9 +40,12 @@ for i=1:sizze
 
 
 %         figure                                                 %Showguing force vectors
-                
-        quiver([disp disp disp],[0 0 0],x_F,y_F,'k','LineWidth', 3);
-        hold on
+          if (endPoint_Location~=0) 
+              quiver([endPoint_Location(i) endPoint_Location(i) endPoint_Location(i)],[0 0 0],x_F,y_F,'k','LineWidth', 3);
+          else
+              quiver([disp disp disp],[0 0 0],x_F,y_F,'k','LineWidth', 3);
+          end
+          hold on
 %         plot([0 0], [-5 5],'k');
 %         hold on
 %         plot([-5 5],[0 0],'k');
@@ -56,8 +60,11 @@ for i=1:sizze
         end
 
         k = convhull(vertex,vertey);                            %Showing the convex polygon formed by the column space created by Minkoski sum                      
-%         plot(vertex(k)+disp,vertey(k),'r-',vertex+disp,vertey,'b*')
-        plot(vertex(k)+disp,vertey(k),'r-')
+         if (endPoint_Location~=0)
+           plot(vertex(k)+endPoint_Location(i),vertey(k),'r-')
+         else
+            plot(vertex(k)+disp,vertey(k),'r-')
+         end
 
 
 %         LimbFigure(q(i,1), q(i,2), l1, l2)

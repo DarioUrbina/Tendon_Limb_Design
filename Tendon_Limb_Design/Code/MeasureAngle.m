@@ -16,7 +16,7 @@ function [slope_b1_c1,slope_b2_c2]=MeasureAngle (x1, y1, x2, y2)
 
     if (x1(3)>=x1(1))
         slope_b1_c1=90+(atand((y1(3)-y1(2))/(x1(3)-x1(2))));                              % Good
-        slope_b2_c2=(atand((y2(3)-y2(2))/(x2(3)-x2(2))))+(90-slope_b1_c1) ;           % Good
+        slope_b2_c2=(atand((y2(3)-y2(2))/(x2(3)-x2(2))))+(90-slope_b1_c1);            % Good
     else
         slope_b1_c1=-(90-(atand((y1(3)-y1(2))/(x1(3)-x1(2)))));                           % Good
              if (x2(3)>=x2(1))
@@ -31,3 +31,6 @@ function [slope_b1_c1,slope_b2_c2]=MeasureAngle (x1, y1, x2, y2)
     end
 
 end
+% slope_b2_c2=90+(atand((y2(3)-y2(2))/(x2(3)-x2(2))))-slopea_b_c
+
+% ang=atand((y(2)-y(1))/(x(2)-x(1)));
