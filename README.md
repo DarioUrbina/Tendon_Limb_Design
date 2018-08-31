@@ -20,5 +20,8 @@ Feasible wrench space: __w=J[-trnasp]*R*F*a=Ha
 
 
 
-
+THINGS TO IMPROVE IN CODE:
+Call and modify all parameters from Leg_Trajectory.m
+	segments length should be modifyed from Leg_Trajectory
+	
 

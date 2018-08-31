@@ -2,26 +2,29 @@
 % See how the walking sycle would look. What are we really expecting 
 % from a walking cycle??
 
+clear all;%close all
 %% Paremeters
-l1=10;                 %Determines leg size, in this case we asume that upper and lower limb segments are the same size
+l1=8;                 %Determines leg size, in this case we asume that upper and lower limb segments are the same size
 % l1=8.2;
 % l2=4;
-q1_Position=[0 16];    %Modify these parameter dependig on the leg size
-xlimit1=[-20 20];     
-ylimit1=[0 20];      
-xlimit2=[-15 250];      %Modify these parameter dependig on the feasible forse size
+q1_Position=[0 15];    %Modify these parameter dependig on the leg size
+xlimit1=[-8 8];     
+ylimit1=[-5 17];      
+xlimit2=[-15 100];      %Modify these parameter dependig on the feasible forse size
 ylimit2=[-30 40]; 
 firstTouchPoint=20;    %Modify this parameter dependig on the leg size
                         %Include forces and Moment Arm Matrix here
-Motor_Force=49*.80;                       
+Motor_Force=49*.80;
+force_figure_scale=.15;
+rr=1;
 %%
-% slope1=zeros(1,6);
+
 angleCount=0;
 
 figure
 
 %%
-for i=1:2:45
+for i=1:3.6:45
     
     %     i
         x(1) = q1_Position(1);
@@ -57,51 +60,68 @@ for i=1:2:45
         if (x(3)>q1_Position(1))
 
 %             subplot (4,1,1) 
-            subplot (2,1,1) 
-            plot ([knee_pull(1) x(3)], [knee_pull(2) y(3)]);
+%             subplot (2,1,1)
+            subplot (1,1,1) 
+             plot ([knee_pull(1) x(3)], [knee_pull(2) y(3)],'color',[.3 .3 .3 .9],'linewidth',3,'LineStyle','-.');
 
             hold on
 %             subplot (4,1,1)
-            subplot (2,1,1) 
-            plot  ([knee_pull(1) x(1)], [knee_pull(2) y(1)]);
+%             subplot (2,1,1)
+            subplot (1,1,1) 
+             plot  ([knee_pull(1) x(1)], [knee_pull(2) y(1)],'color',[.3 .3 .3 .9],'linewidth',3,'LineStyle','-.');
 
             x1=[q1_Position(1) q1_Position(1) knee_pull(1) q1_Position(1)];
             y1=[knee_pull(2) q1_Position(2) knee_pull(2) knee_pull(2)];
 
             x2=[knee_pull(1) knee_pull(1) x(3) knee_pull(1)];
             y2=[knee_pull(2) y(3) y(3) knee_pull(2)];
+%              x2=[0 0              x(3)-knee_pull(1)     0];
+%              y2=[0 knee_pull(2)   0                     0];
+
 
             [deg1(angleCount),deg2(angleCount)]=MeasureAngle (x1, y1, x2, y2);
-
+%              if (rr==2)
+%             deg2(angleCount)=180-deg2(angleCount)
+%              end
+%             rr=2;
 
         else
 
 %             subplot (4,1,1);
-            subplot (2,1,1) 
-            plot([knee_push(1) x(3)], [knee_push(2) y(3)]);
+%             subplot (2,1,1) 
+            subplot (1,1,1) 
+             plot([knee_push(1) x(3)], [knee_push(2) y(3)],'color',[.3 .3 .3 .9],'linewidth',3,'LineStyle','-.');
             hold on
 %             subplot (4,1,1);
-            subplot (2,1,1) 
-            plot ([knee_push(1) x(1)], [knee_push(2) y(1)]);
+%             subplot (2,1,1) 
+            subplot (1,1,1) 
+             plot ([knee_push(1) x(1)], [knee_push(2) y(1)],'color',[.3 .3 .3 .9],'linewidth',3,'LineStyle','-.');
 
             x1=[q1_Position(1) q1_Position(1) knee_push(1) q1_Position(1)];
             y1=[knee_push(2) q1_Position(2) knee_push(2) knee_push(2)];
 
             x2=[knee_push(1) knee_push(1) x(3) knee_push(1)];
             y2=[knee_push(2) y(3) y(3) knee_push(2)]; 
+
+%              x2=[0 0              x(3)-knee_push(1)     0];
+%              y2=[0 knee_push(2)   0                     0];
+             
             [deg1(angleCount),deg2(angleCount)]=MeasureAngle (x1, y1, x2, y2);
+%              deg2(angleCount)=180-deg2(angleCount)
 
             if (x(3)<knee_push(1))
                 deg2(angleCount)=-deg2(angleCount)
             end
         end
+        ground_Touch(angleCount)=x(3);
+
     end
 end
 
 xlim(xlimit1);
 ylim(ylimit1);
 pbaspect([1 (ylimit1(1)-ylimit1(2))/(xlimit1(1)-xlimit1(2)) 1])
-title('Leg position')
+% title('Leg position')
 xlabel('cm')
 ylabel('cm') 
 hold on
@@ -123,13 +143,26 @@ hold on
      
 degs=[deg1;deg2]';
 % subplot (4,1,4)
-subplot (2,1,2) 
 
+hold on
+subplot (1,1,1) 
+ground_Touch=flip(ground_Touch);
+Tendon_Limb_Design(degs,Motor_Force,ground_Touch,force_figure_scale)
+xlim(xlimit1);
+ylim(ylimit1);
+pbaspect([1 (ylimit1(1)-ylimit1(2))/(xlimit1(1)-xlimit1(2)) 1])
 
-Tendon_Limb_Design(degs,Motor_Force)
+% hold on
+figure
+% subplot (2,1,2) 
+
+Tendon_Limb_Design(degs,Motor_Force,0,1)
 xlim(xlimit2);
 ylim(ylimit2);
 pbaspect([1 (ylimit2(1)-ylimit2(2))/(xlimit2(1)-xlimit2(2)) 1])
+
+
+
 
 
 
