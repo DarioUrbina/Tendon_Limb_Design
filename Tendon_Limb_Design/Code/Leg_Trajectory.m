@@ -2,7 +2,7 @@
 % See how the walking sycle would look. What are we really expecting 
 % from a walking cycle??
 
-clear all;close all
+clear all;%close all
 %% Paremeters
 l1=8;                 %Determines leg size, in this case we asume that upper and lower limb segments are the same size
 % l1=8.2;
@@ -16,6 +16,7 @@ firstTouchPoint=20;    %Modify this parameter dependig on the leg size
                         %Include forces and Moment Arm Matrix here
 Motor_Force=49*.80;
 force_figure_scale=.15;
+rr=1;
 %%
 
 angleCount=0;
@@ -72,13 +73,17 @@ for i=1:3.6:45
             x1=[q1_Position(1) q1_Position(1) knee_pull(1) q1_Position(1)];
             y1=[knee_pull(2) q1_Position(2) knee_pull(2) knee_pull(2)];
 
-%             x2=[knee_pull(1) knee_pull(1) x(3) knee_pull(1)];
-%             y2=[knee_pull(2) y(3) y(3) knee_pull(2)];
-             x2=[0 0              x(3)-knee_pull(1)     0];
-             y2=[0 knee_pull(2)   0                     0];
+            x2=[knee_pull(1) knee_pull(1) x(3) knee_pull(1)];
+            y2=[knee_pull(2) y(3) y(3) knee_pull(2)];
+%              x2=[0 0              x(3)-knee_pull(1)     0];
+%              y2=[0 knee_pull(2)   0                     0];
+
 
             [deg1(angleCount),deg2(angleCount)]=MeasureAngle (x1, y1, x2, y2);
-
+%              if (rr==2)
+%             deg2(angleCount)=180-deg2(angleCount)
+%              end
+%             rr=2;
 
         else
 
@@ -97,9 +102,12 @@ for i=1:3.6:45
 
             x2=[knee_push(1) knee_push(1) x(3) knee_push(1)];
             y2=[knee_push(2) y(3) y(3) knee_push(2)]; 
-%             x2=[0 0                        -abs(knee_push(1)-x(3)) 0];
-%             y2=[0 abs(knee_push(2)-y(3))   0                   0];
+
+%              x2=[0 0              x(3)-knee_push(1)     0];
+%              y2=[0 knee_push(2)   0                     0];
+             
             [deg1(angleCount),deg2(angleCount)]=MeasureAngle (x1, y1, x2, y2);
+%              deg2(angleCount)=180-deg2(angleCount)
 
             if (x(3)<knee_push(1))
                 deg2(angleCount)=-deg2(angleCount)

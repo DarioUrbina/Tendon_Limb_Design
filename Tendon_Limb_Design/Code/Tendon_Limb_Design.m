@@ -42,12 +42,18 @@ for i=1:sizze
 %         figure                                                 %Showguing force vectors
           if (endPoint_Location~=0) 
 %               quiver([endPoint_Location(i) endPoint_Location(i) endPoint_Location(i)],[0 0 0],x_F,y_F,'k','LineWidth', 3,'color',[.9 .9 .9 .9]);
-               quiver(endPoint_Location(i),0 ,x_F(1),y_F(1),'k','LineWidth', 2,'color',[0 0 1 .9],'MaxHeadSize',.5,'AutoScale','off' );
+%                quiver(endPoint_Location(i),0 ,x_F(1),y_F(1),'k','LineWidth', 2,'color',[0 0 1 .9],'MaxHeadSize',.5,'AutoScale','off' );
+               quiver(endPoint_Location(i),0 ,x_F(1),y_F(1),'k','LineWidth', 2,'color',[0 0 0 .9],'MaxHeadSize',.5,'AutoScale','off' );
+
 % plot([endPoint_Location(i),0] ;[x_F(1),y_F(1)])
               hold on
-                quiver(endPoint_Location(i),0 ,x_F(2),y_F(2),'k','LineWidth', 2,'color',[1 0 0 .9],'MaxHeadSize',.5,'AutoScale','off' );
+%                 quiver(endPoint_Location(i),0 ,x_F(2),y_F(2),'k','LineWidth', 2,'color',[1 0 0 .9],'MaxHeadSize',.5,'AutoScale','off' );
+                quiver(endPoint_Location(i),0 ,x_F(2),y_F(2),'k','LineWidth', 2,'color',[0 0 0 .9],'MaxHeadSize',.5,'AutoScale','off' );
+
+                
               hold on
-                quiver(endPoint_Location(i),0 ,x_F(3),y_F(3),'k','LineWidth', 2,'color',[0 .6 0 .9],'MaxHeadSize',.5,'AutoScale','off' );
+%                 quiver(endPoint_Location(i),0 ,x_F(3),y_F(3),'k','LineWidth', 2,'color',[0 1 0 .9],'MaxHeadSize',.5,'AutoScale','off' );
+                quiver(endPoint_Location(i),0 ,x_F(3),y_F(3),'k','LineWidth', 2,'color',[0 0 0 .9],'MaxHeadSize',.5,'AutoScale','off' );
 
               
           else

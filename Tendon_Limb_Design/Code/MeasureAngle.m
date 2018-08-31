@@ -3,7 +3,7 @@ function [slope_b1_c1,slope_b2_c2]=MeasureAngle (x1, y1, x2, y2)
 
     %% Plots %%%%%%%%%%%%%%%Uncomment this section to test with TestingMeasuringAngle
 %         figure %%%%%%%%%%%%Uncomment to test with TestingMeasuringAngle (Also uncomment plots)
-% 
+
 %     plot(x1,y1);                                  %Ploting a desplaced a triangle
 %     hold on
 %      plot(x2+x1(3),y2-y2(2)); %Perhaps get rid of this would workfor the complete project                     %Ploting a desplaced a triangle
