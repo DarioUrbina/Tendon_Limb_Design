@@ -1,5 +1,7 @@
 # Tendon_Limb_Design
 
+THIS IS AN OLD VERSION OF THE CODE. PLEASE GO TO Tendon_Limb_Design_2 for a newer version
+
 Run "Leg_Trayectory.m" to run the code and get the main figure showing the angle changes and fesible forse set  for a leg movement during a ground stage.
 
 The goal of this respository is to show the design behind a Tendon-Driven leg following this basic steps: 
